@@ -3,13 +3,13 @@
 
   <ul class="sidebar-nav" id="sidebar-nav">
 
-    {{-- <!-- Dashboard Nav -->
+    <!-- Dashboard Nav -->
     <li class="nav-item">
       <a href="{{ url('/dashboard') }}" class="nav-link {{ Request::is('dashboard') ? '' : 'collapsed' }}">
         <i class="bi bi-grid"></i>
         <span>Dashboard</span>
       </a>
-    </li><!-- End Dashboard Nav --> --}}
+    </li><!-- End Dashboard Nav -->
 
     <!-- Nav -->
     <li class="nav-item">
@@ -18,6 +18,23 @@
         <span>Data Mahasiswa</span>
       </a>
     </li><!-- End Nav -->
+
+    <!-- Nav -->
+    <li class="nav-item">
+      <a href="./data-operator " class="nav-link collapsed">
+        <i class="bi bi-person-fill"></i>
+        <span>Operator</span>
+      </a>
+    </li><!-- End Nav -->
+
+     <!-- Nav -->
+     <li class="nav-item">
+      <a href="./penduduks " class="nav-link collapsed">
+        <i class="bi bi-person-fill"></i>
+        <span>Penduduk</span>
+      </a>
+    </li><!-- End Nav -->
+
 
    
     {{-- <!-- Logout Nav -->

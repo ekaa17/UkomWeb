@@ -1,0 +1,68 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Staff;
+use App\Models\Penduduk;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
+class PendudukController extends Controller
+{
+   
+   public function index()
+   {
+       $penduduks = Penduduk::with('staff')->get(); // Mengambil data penduduk beserta relasi staff
+       $staffs = Staff::all(); // Mengambil data staff untuk dropdown
+       return view('pages.penduduks.index', compact('penduduks', 'staffs'));
+   }
+
+   /**
+    * Store a newly created resource in storage.
+    */
+   public function store(Request $request)
+   {
+       $request->validate([
+           'nik' => 'required|string|size:16|unique:penduduks,nik',
+           'nama' => 'required|string|max:255',
+           'alamat' => 'required|string',
+           'kelurahan' => 'required|string|max:255',
+           'id_staff' => 'required|exists:staff,id',
+       ]);
+
+       Penduduk::create($request->all());
+
+       return redirect()->route('penduduks.index')->with('success', 'Data penduduk berhasil ditambahkan!');
+   }
+
+   /**
+    * Update the specified resource in storage.
+    */
+   public function update(Request $request, $id)
+   {
+       $penduduk = Penduduk::findOrFail($id);
+
+       $request->validate([
+           'nik' => 'required|string|size:16|unique:penduduks,nik,' . $penduduk->id,
+           'nama' => 'required|string|max:255',
+           'alamat' => 'required|string',
+           'kelurahan' => 'required|string|max:255',
+           'id_staff' => 'required|exists:staff,id',
+       ]);
+
+       $penduduk->update($request->all());
+
+       return redirect()->route('penduduks.index')->with('success', 'Data penduduk berhasil diperbarui!');
+   }
+
+   /**
+    * Remove the specified resource from storage.
+    */
+   public function destroy($id)
+   {
+       $penduduk = Penduduk::findOrFail($id);
+       $penduduk->delete();
+
+       return redirect()->route('penduduks.index')->with('success', 'Data penduduk berhasil dihapus!');
+   }
+}

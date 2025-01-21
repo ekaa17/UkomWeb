@@ -6,21 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!-- Favicons -->
-    <link href="{{ asset('assets/img/logo.jpg') }}" rel="icon" class="rounded-circle">
-    <link href="{{ asset('assets/img/logo.jpg') }}" rel="apple-touch-icon" class="rounded-circle">
+    <link href="{{ asset('assets/img/logounival.png') }}" rel="icon" class="rounded-circle">
+    <link href="{{ asset('assets/img/logounival.png') }}" rel="apple-touch-icon" class="rounded-circle">
 
     <link rel="stylesheet" href="{{ asset('assets/css/login.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
-    <title>Login Sistem</title>
+    <title>UkomWEB</title>
 </head>
 <body>
     <div class="wrapper">
         <div class="logo">
-            <img src="{{ asset('assets/img/logo.jpg') }}" alt="">
+            <img src="{{ asset('assets/img/logounival.png') }}" alt="">
         </div>
         <div class="text-center mt-4 name">
-            Sistem UjiKompetensi2 <br>
+            Ujikom WEB<br>
 
             @if(session('wrong'))
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -34,7 +34,7 @@
             @csrf
             <div class="form-field d-flex align-items-center">
                 <span class="far fa-user"></span>
-                <input type="number" name="nip" id="nip" placeholder="NIP">
+                <input type="email" name="email" id="email" placeholder="email">
             </div>
             <div class="form-field d-flex align-items-center">
                 <span class="fas fa-key"></span>

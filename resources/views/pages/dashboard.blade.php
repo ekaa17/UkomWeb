@@ -11,7 +11,7 @@
         </nav>
     </div><!-- End Page Title -->
 
-    <section class="section dashboard">
+    {{-- <section class="section dashboard">
         <div class="row">
             <div class="col-lg-12">
                 <div class="row justify-content-center">
@@ -20,7 +20,7 @@
 
                         <div class="card">
                             <div class="card-body row justify-content-center text-center m-2">
-                                <img src="{{ asset('assets/img/logo.jpg') }}" alt="" class="img-fluid w-50 mt-3">
+                                <img src="{{ asset('assets/img/logounival.png') }}" alt="" class="img-fluid w-50 mt-3">
                                 <h6> SELAMAT DATANG <br> DI <br> MAHASISWA </h6>
                             </div>
                         </div>
@@ -29,7 +29,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row"> --}}
 {{--     
             <!-- GuruCard -->
             <div class="col-xxl-3 col-md-6">

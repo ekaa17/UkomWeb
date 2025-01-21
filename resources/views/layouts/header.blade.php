@@ -24,8 +24,8 @@
           </a><!-- End Profile Iamge Icon --> --}}
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="{{ asset('assets/img/profile.jpg') }}" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">EkaPratama</span>
+            <img src="{{ auth()->user()->profile ? asset('assets/img/profile/' . auth()->user()->profile) : asset('default-profile.png') }}" class="rounded-circle" width="35" height="35" alt="" />
+            <span class="d-none d-md-block dropdown-toggle ps-2">{{ auth()->user()->name }}</span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
