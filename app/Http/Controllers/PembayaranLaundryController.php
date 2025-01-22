@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DetailPembayaran;
 use App\Models\PembayaranLaundry;
 use App\Models\Staff;
 use App\Models\Pelanggan;
@@ -31,6 +32,17 @@ class PembayaranLaundryController extends Controller
         PembayaranLaundry::create($request->all());
 
         return redirect()->route('pembayaran_laundry.index')->with('success', 'Pembayaran laundry berhasil ditambahkan.');
+    }
+
+
+    public function show($id)
+    {
+        $pembayaranLaundry = PembayaranLaundry::with('DetailPembayarans.hargaLaundry')->findOrFail($id);
+        $hargaLaundries = HargaLaundry::all(); // Get all harga laundry options
+        $pembayaran = PembayaranLaundry::with(['staff', 'pelanggan', 'hargaLaundry'])->get();
+        $detail_pembayaran = DetailPembayaran::where('id_pembayaranlaundries', $id)->get();
+
+        return view('pages.pembayaran.show', compact('pembayaran','pembayaranLaundry', 'hargaLaundries','detail_pembayaran'));
     }
 
     public function update(Request $request, PembayaranLaundry $pembayaran_laundry)

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DetailPembayaranController;
 use App\Http\Controllers\HargaLaundryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PembayaranLaundryController;
 use App\Http\Controllers\PendudukController;
 use App\Http\Controllers\StaffController;
+use App\Models\DetailPembayaran;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +39,7 @@ Route::group(['middleware' => 'cekrole:Admin,Karyawan'], function() {
     Route::resource('/pelanggan', PelangganController::class)->names('pelanggan');
     Route::resource('/harga-laundry', HargaLaundryController::class)->names('harga-laundry');
     Route::resource('/pembayaran_laundry', PembayaranLaundryController::class)->names('pembayaran_laundry');
+    Route::resource('/detail-pembayaran', DetailPembayaranController::class)->names('detail-pembayaran');
 
 });
 

@@ -31,7 +31,6 @@
                                         <th>No.</th>
                                         <th>Staff</th>
                                         <th>Pelanggan</th>
-                                        <th>Harga Laundry</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -41,8 +40,10 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $data->staff->name }}</td>
                                             <td>{{ $data->pelanggan->nama }}</td>
-                                            <td>{{ number_format($data->hargaLaundry->harga, 0, ',', '.') }}</td>
                                             <td>
+                                                <a href="{{ route('pembayaran_laundry.show', $data->id) }}" class="btn btn-info">
+                                                    <i class="bi bi-eye-fill"></i>
+                                                </a>
                                                 <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal{{ $data->id }}">
                                                     Edit
                                                 </button>

@@ -41,4 +41,9 @@ class Pembayaranlaundry extends Model
     {
         return $this->belongsTo(HargaLaundry::class, 'id_hargalaundries','id');
     }
+
+    public function detailPembayarans()
+    {
+        return $this->hasMany(DetailPembayaran::class, 'id_pembayaranlaundries');
+    }
 }

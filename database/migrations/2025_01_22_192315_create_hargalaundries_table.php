@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('hargalaundries', function (Blueprint $table) {
             $table->id();
-            $table->integer('berat');
+            $table->string('jenis_layanan');
             $table->decimal('harga', 10, 2);
+            $table->string('unit');
             $table->timestamps();
         });
     }

@@ -29,8 +29,9 @@
                                 <thead class="table-light">
                                     <tr>
                                         <th>No.</th>
-                                        <th>Berat (Kg)</th>
+                                        <th>Jenis Layanan</th>
                                         <th>Harga (Rp)</th>
+                                        <th>Unit</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -38,8 +39,9 @@
                                     @forelse ($hargakilo as $harga)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $harga->berat }}</td>
-                                            <td>{{ number_format($harga->harga, 0, ',', '.') }}</td>
+                                            <td>{{ $harga->jenis_layanan }}</td>
+                                            <td>{{ number_format($harga->harga, 0, ',', '.') }} Rp</td>
+                                            <td>{{ $harga->unit }}</td>
                                             <td>
                                                 <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal{{ $harga->id }}">
                                                     Edit
@@ -55,7 +57,7 @@
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">Edit Harga Laundry</h5>
+                                                        <h5 class="modal-title" id="editModalLabel{{ $harga->id }}">Edit Harga Laundry</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <form action="{{ route('harga-laundry.update', $harga->id) }}" method="POST">
@@ -63,12 +65,16 @@
                                                         @method('PUT')
                                                         <div class="modal-body">
                                                             <div class="mb-3">
-                                                                <label for="berat" class="form-label">Berat (Kg)</label>
-                                                                <input type="number" name="berat" id="berat" class="form-control" value="{{ $harga->berat }}" required>
+                                                                <label for="jenis_layanan" class="form-label">Jenis Layanan</label>
+                                                                <input type="text" name="jenis_layanan" id="jenis_layanan" class="form-control" value="{{ $harga->jenis_layanan }}" required>
                                                             </div>
                                                             <div class="mb-3">
                                                                 <label for="harga" class="form-label">Harga (Rp)</label>
                                                                 <input type="number" name="harga" id="harga" class="form-control" value="{{ $harga->harga }}" required>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="unit" class="form-label">Unit</label>
+                                                                <input type="text" name="unit" id="unit" class="form-control" value="{{ $harga->unit }}" required>
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
@@ -85,7 +91,7 @@
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">Hapus Harga Laundry</h5>
+                                                        <h5 class="modal-title" id="deleteModalLabel{{ $harga->id }}">Hapus Harga Laundry</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
@@ -104,7 +110,7 @@
                                         </div>
                                     @empty
                                         <tr>
-                                            <td colspan="4" class="text-center">Tidak ada data</td>
+                                            <td colspan="5" class="text-center">Tidak ada data</td>
                                         </tr>
                                     @endforelse
                                 </tbody>
@@ -121,19 +127,23 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Tambah Harga Laundry</h5>
+                    <h5 class="modal-title" id="createModalLabel">Tambah Harga Laundry</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="{{ route('harga-laundry.store') }}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label for="berat" class="form-label">Berat (Kg)</label>
-                            <input type="number" name="berat" id="berat" class="form-control" required>
+                            <label for="jenis_layanan" class="form-label">Jenis Layanan</label>
+                            <input type="text" name="jenis_layanan" id="jenis_layanan" class="form-control" required>
                         </div>
                         <div class="mb-3">
                             <label for="harga" class="form-label">Harga (Rp)</label>
                             <input type="number" name="harga" id="harga" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="unit" class="form-label">Unit</label>
+                            <input type="text" name="unit" id="unit" class="form-control" required>
                         </div>
                     </div>
                     <div class="modal-footer">

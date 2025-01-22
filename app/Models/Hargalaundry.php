@@ -12,7 +12,8 @@ class Hargalaundry extends Model
     protected $table = 'hargalaundries';
 
     protected $fillable = [
-        'berat',
+        'jenis_layanan',
         'harga',
+        'unit',
     ];
 }

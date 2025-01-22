@@ -7,56 +7,96 @@ use Illuminate\Http\Request;
 
 class HargaLaundryController extends Controller
 {
-    // Menampilkan semua data Harga Laundry
+    /**
+     * Menampilkan daftar harga laundry.
+     *
+     * @return \Illuminate\View\View
+     */
     public function index()
     {
-        $hargakilo = HargaLaundry::all(); // Mengambil semua data
+        // Mengambil semua data harga laundry
+        $hargakilo = HargaLaundry::all();
         return view('pages.harga-laundry.index', compact('hargakilo'));
     }
 
-    // Menyimpan data baru ke tabel harga_laundry
+    /**
+     * Menampilkan form untuk menambah data harga laundry.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function create()
+    {
+        return view('harga-laundry.create');
+    }
+
+    /**
+     * Menyimpan data harga laundry baru ke database.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request)
     {
-        $request->validate([
-            'berat' => 'required|integer|min:1', // Validasi berat minimal 1
-            'harga' => 'required|numeric|min:0', // Validasi harga minimal 0
+        // Validasi data input
+        $validated = $request->validate([
+            'jenis_layanan' => 'required|string|max:255',
+            'harga' => 'required|numeric|min:0',
+            'unit' => 'required|string|max:50',
         ]);
 
-        HargaLaundry::create([
-            'berat' => $request->berat,
-            'harga' => $request->harga,
-        ]);
+        // Menyimpan data harga laundry
+        HargaLaundry::create($validated);
 
-        return redirect()->route('harga_laundry.index')->with('success', 'Harga Laundry berhasil ditambahkan.');
+        // Menampilkan pesan sukses
+        return redirect()->route('harga-laundry.index')->with('success', 'Harga Laundry berhasil ditambahkan.');
     }
 
-    // Menampilkan form edit
+    /**
+     * Menampilkan form untuk mengedit data harga laundry.
+     *
+     * @param  \App\Models\HargaLaundry  $hargaLaundry
+     * @return \Illuminate\View\View
+     */
     public function edit(HargaLaundry $hargaLaundry)
     {
-        return view('pages.harga_laundry.edit', compact('hargaLaundry'));
+        return view('harga-laundry.edit', compact('hargaLaundry'));
     }
 
-    // Memperbarui data
+    /**
+     * Memperbarui data harga laundry yang ada.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\HargaLaundry  $hargaLaundry
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(Request $request, HargaLaundry $hargaLaundry)
     {
-        $request->validate([
-            'berat' => 'required|integer|min:1',
+        // Validasi data input
+        $validated = $request->validate([
+            'jenis_layanan' => 'required|string|max:255',
             'harga' => 'required|numeric|min:0',
+            'unit' => 'required|string|max:50',
         ]);
 
-        $hargaLaundry->update([
-            'berat' => $request->berat,
-            'harga' => $request->harga,
-        ]);
+        // Memperbarui data harga laundry
+        $hargaLaundry->update($validated);
 
-        return redirect()->route('harga_laundry.index')->with('success', 'Harga Laundry berhasil diperbarui.');
+        // Menampilkan pesan sukses
+        return redirect()->route('harga-laundry.index')->with('success', 'Harga Laundry berhasil diperbarui.');
     }
 
-    // Menghapus data
+    /**
+     * Menghapus data harga laundry.
+     *
+     * @param  \App\Models\HargaLaundry  $hargaLaundry
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy(HargaLaundry $hargaLaundry)
     {
+        // Menghapus data harga laundry
         $hargaLaundry->delete();
 
-        return redirect()->route('harga_laundry.index')->with('success', 'Harga Laundry berhasil dihapus.');
+        // Menampilkan pesan sukses
+        return redirect()->route('harga-laundry.index')->with('success', 'Harga Laundry berhasil dihapus.');
     }
 }

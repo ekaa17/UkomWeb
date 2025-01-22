@@ -53,7 +53,7 @@
      <li class="nav-item">
       <a href="./harga-laundry " class="nav-link collapsed">
         <i class="bi bi-person-fill"></i>
-        <span>Harga Laundry</span>
+        <span>Jenis Layanan Laundry</span>
       </a>
     </li><!-- End Nav -->
 
