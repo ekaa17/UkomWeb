@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\HargaLaundryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\PembayaranLaundryController;
 use App\Http\Controllers\PendudukController;
 use App\Http\Controllers\StaffController;
 
@@ -31,6 +34,9 @@ Route::group(['middleware' => 'cekrole:Admin,Karyawan'], function() {
     Route::resource('/data-mahasiswa', MahasiswaController::class)->names('data-mahasiswa');
     Route::resource('/data-operator', StaffController::class)->names('data-operator');
     Route::resource('/penduduks', PendudukController::class)->names('penduduks');
+    Route::resource('/pelanggan', PelangganController::class)->names('pelanggan');
+    Route::resource('/harga-laundry', HargaLaundryController::class)->names('harga-laundry');
+    Route::resource('/pembayaran_laundry', PembayaranLaundryController::class)->names('pembayaran_laundry');
 
 });
 

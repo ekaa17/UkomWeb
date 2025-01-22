@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Hargalaundry;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,7 +17,11 @@ class DatabaseSeeder extends Seeder
      $this->call([
         MahasiswaSeeder ::class,
         StaffSeeder ::class,
-        PendudukSeeder ::class
+        PendudukSeeder ::class,
+        PelangganSeeder ::class,
+        HargalaundrySeeder ::class,
+        PembayaranLaundrySeeder ::class,
+
      ]);    
     }
 }

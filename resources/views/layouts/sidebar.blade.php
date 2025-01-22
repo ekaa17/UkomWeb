@@ -19,6 +19,9 @@
       </a>
     </li><!-- End Nav -->
 
+
+    <span>Penduduk</span>
+
     <!-- Nav -->
     <li class="nav-item">
       <a href="./data-operator " class="nav-link collapsed">
@@ -32,6 +35,33 @@
       <a href="./penduduks " class="nav-link collapsed">
         <i class="bi bi-person-fill"></i>
         <span>Penduduk</span>
+      </a>
+    </li><!-- End Nav -->
+
+    <span>Laundry</span>
+
+     <!-- Nav -->
+     <li class="nav-item">
+      <a href="./pelanggan " class="nav-link collapsed">
+        <i class="bi bi-person-fill"></i>
+        <span>Pelanggan</span>
+      </a>
+    </li><!-- End Nav -->
+
+
+     <!-- Nav -->
+     <li class="nav-item">
+      <a href="./harga-laundry " class="nav-link collapsed">
+        <i class="bi bi-person-fill"></i>
+        <span>Harga Laundry</span>
+      </a>
+    </li><!-- End Nav -->
+
+     <!-- Nav -->
+     <li class="nav-item">
+      <a href="./pembayaran_laundry " class="nav-link collapsed">
+        <i class="bi bi-person-fill"></i>
+        <span>Pembayaran Laundry</span>
       </a>
     </li><!-- End Nav -->
 
