@@ -18,7 +18,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center my-3">
-                            <h5 class="card-title">Daftar Pembayaran Laundry</h5>
+                            <h5 class="card-title">Daftar :  Pembayaran Laundry</h5>
                             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
                                 Tambah Data
                             </button>
@@ -29,7 +29,7 @@
                                 <thead class="table-light">
                                     <tr>
                                         <th>No.</th>
-                                        <th>Staff</th>
+                                        <th>Operator</th>
                                         <th>Pelanggan</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -41,14 +41,14 @@
                                             <td>{{ $data->staff->name }}</td>
                                             <td>{{ $data->pelanggan->nama }}</td>
                                             <td>
-                                                <a href="{{ route('pembayaran_laundry.show', $data->id) }}" class="btn btn-info">
+                                                <a href="{{ route('pembayaran_laundry.show', $data->id) }}" class="btn btn-info btn-sm">
                                                     <i class="bi bi-eye-fill"></i>
                                                 </a>
                                                 <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal{{ $data->id }}">
-                                                    Edit
+                                                    <i class="bi bi-pencil-fill"></i>
                                                 </button>
                                                 <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $data->id }}">
-                                                    Hapus
+                                                    <i class="bi bi-trash-fill"></i>
                                                 </button>
                                             </td>
                                         </tr>

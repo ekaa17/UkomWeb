@@ -30,7 +30,7 @@
                                     <tr>
                                         <th>No.</th>
                                         <th>Jenis Layanan</th>
-                                        <th>Harga (Rp)</th>
+                                        <th> Harga (Rp)</th>
                                         <th>Unit</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -40,14 +40,14 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $harga->jenis_layanan }}</td>
-                                            <td>{{ number_format($harga->harga, 0, ',', '.') }} Rp</td>
+                                            <td>Rp. {{ number_format($harga->harga, 0, ',', '.') }} </td>
                                             <td>{{ $harga->unit }}</td>
                                             <td>
                                                 <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal{{ $harga->id }}">
-                                                    Edit
+                                                    <i class="bi bi-pencil-fill"></i>
                                                 </button>
                                                 <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $harga->id }}">
-                                                    Hapus
+                                                    <i class="bi bi-trash-fill"></i>
                                                 </button>
                                             </td>
                                         </tr>

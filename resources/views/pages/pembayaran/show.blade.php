@@ -50,9 +50,9 @@
                 </div>
             </div>
 
-            <div class="d-flex justify-content-center align-items-center my-2">
+            <div class="d-flex justify-content-center align-items-center my-4">
                 <a href="{{ route('pembayaran_laundry.index') }}" class="btn btn-primary">
-                    Kembali ke halaman penawaran harga
+                    Kembali ke halaman Pembayaran
                 </a>
             </div>
 
@@ -60,9 +60,9 @@
                 <div class="card">
                     <div class="card-body pt-3">
                         <div class="d-flex align-items-center justify-content-between m-3">
-                            <h5 class="card-title">Total : Produk</h5>
+                            <h5 class="card-title">Total : Detail Pembayaran</h5>
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahProduk">
-                                <i class="bi bi-plus"></i> Tambah Produk
+                                <i class="bi bi-plus"></i> Tambah Detail
                             </button>
                             <div class="modal fade" id="tambahProduk" tabindex="-1" aria-labelledby="tambahProdukLabel" aria-hidden="true">
                                 <div class="modal-dialog">
@@ -132,7 +132,7 @@
                                         <th>Harga</th>
                                         <th>Quantity</th>
                                         <th>Total</th>
-                                        <th></th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -143,7 +143,6 @@
                                             <td> Rp. {{ number_format($data->hargalaundry?->harga, 0, ',', '.') }} </td>
                                             <td> {{ $data->quantity }} {{ $data->hargaLaundry->unit ?? '-' }}</td>
                                             <td> Rp {{ number_format($data->total, 0, ',', '.') }} </td>
-                                            <td></td>
                                             <td>
                                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $data->id }}">
                                                     <i class="bi bi-trash"></i>

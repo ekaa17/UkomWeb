@@ -13,14 +13,20 @@ class PelangganSeeder extends Seeder
         {
           
             Pelanggan::create([
-                'nama' => 'John Doe',
-                'alamat' => '123 Main Street',
+                'nama' => 'Seyla',
+                'alamat' => 'Cilegon',
                 'no_telepon' => '08123456789',
             ]);
     
             Pelanggan::create([
-                'nama' => 'Jane Smith',
-                'alamat' => '456 Another Street',
+                'nama' => 'Tasya',
+                'alamat' => 'Serang',
+                'no_telepon' => '08987654321',
+            ]);
+
+            Pelanggan::create([
+                'nama' => 'YB',
+                'alamat' => 'Jakarta',
                 'no_telepon' => '08987654321',
             ]);
         }

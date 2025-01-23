@@ -52,7 +52,7 @@
                                             <td>{{ $pelanggan->nama }}</td>
                                             <td>{{ $pelanggan->alamat }}</td>
                                             <td>{{ $pelanggan->no_telepon }}</td>
-                                            <td class="d-flex justify-content-center">
+                                            <td>
                                                 <!-- Edit Button -->
                                                 <button type="button" class="btn btn-warning btn-sm me-2" data-bs-toggle="modal" data-bs-target="#editModal{{ $pelanggan->id }}">
                                                     <i class="bi bi-pencil-fill"></i>

@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         PelangganSeeder ::class,
         HargalaundrySeeder ::class,
         PembayaranLaundrySeeder ::class,
-        DetailPembayaranSeeder::class,
+        // DetailPembayaranSeeder::class,
      ]);    
     }
 }
