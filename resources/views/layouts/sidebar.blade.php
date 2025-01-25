@@ -11,6 +11,16 @@
       </a>
     </li><!-- End Dashboard Nav -->
 
+
+
+     <!-- Nav -->
+     <li class="nav-item">
+      <a href="./data-operator " class="nav-link collapsed">
+        <i class="bi bi-person-fill"></i>
+        <span>Operator</span>
+      </a>
+    </li><!-- End Nav -->
+
     <!-- Nav -->
     <li class="nav-item">
       <a href="./data-pegawai " class="nav-link collapsed">

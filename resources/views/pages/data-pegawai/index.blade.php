@@ -33,7 +33,7 @@
                 <div class="card">
                     <div class="card-body pt-3">
                         <div class="d-flex align-items-center justify-content-between m-3">
-                            <h5 class="card-title">Total :   Pegawai</h5>
+                            <h5 class="card-title">Total : {{$totalpegawai}}  Pegawai</h5>
                             <!-- Button untuk modal create -->
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
                                 <i class="fas fa-plus fa-sm text-white-50"></i> Data Baru
@@ -60,7 +60,7 @@
                                         <td>{{ $item->staff->name }}</td>
                                         <td>{{ $item->nama }}</td>
                                         <td>{{ $item->alamat }}</td>
-                                        <td>{{ $item->jenis_kelamin }}</td>
+                                        <td>{{ $item->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan' }}</td>
                                         <td>{{ $item->jabatan }}</td>
                                         <td>
                                             <!-- Tombol Edit -->

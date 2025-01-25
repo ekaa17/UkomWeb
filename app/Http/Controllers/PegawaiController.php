@@ -14,7 +14,8 @@ class PegawaiController extends Controller
     {
         $pegawai = Pegawai::with('staff')->get(); // Mengambil data penduduk beserta relasi staff
         $staffs = Staff::all(); // Mengambil data staff untuk dropdown
-        return view('pages.data-pegawai.index', compact('pegawai', 'staffs'));
+        $totalpegawai = Pegawai :: count();
+        return view('pages.data-pegawai.index', compact('pegawai', 'staffs','totalpegawai'));
     }
  
     /**
@@ -32,7 +33,7 @@ class PegawaiController extends Controller
  
         Pegawai::create($request->all());
  
-        return redirect()->route('data-pegawai.index')->with('success', 'Data penduduk berhasil ditambahkan!');
+        return redirect()->route('data-pegawai.index')->with('success', 'Data Pegawai  berhasil ditambahkan!');
     }
  
     /**
@@ -52,7 +53,7 @@ class PegawaiController extends Controller
  
         $data->update($request->all());
  
-        return redirect()->route('data-pegawai.index')->with('success', 'Data penduduk berhasil diperbarui!');
+        return redirect()->route('data-pegawai.index')->with('success', 'Data pegawai berhasil diperbarui!');
     }
  
     /**
@@ -63,6 +64,6 @@ class PegawaiController extends Controller
         $data = Pegawai::findOrFail($id);
         $data->delete();
  
-        return redirect()->route('data-pegawai.index')->with('success', 'Data penduduk berhasil dihapus!');
+        return redirect()->route('data-pegawai.index')->with('success', 'Data Pegawai berhasil dihapus!');
     }
 }

@@ -3,6 +3,12 @@
 @section('content')
     <div class="pagetitle mb-4">
         <h1>Data Kecamatan</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active">Data Kecamatan</li>
+            </ol>
+        </nav>
     </div>
 
     <section class="section">

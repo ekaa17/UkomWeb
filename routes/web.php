@@ -40,6 +40,7 @@ Route::group(['middleware' => 'cekrole:Admin,Karyawan'], function() {
     Route::resource('/kecamatan', KecamatanController::class)->names('kecamatan');
     Route::resource('/kelurahan', KelurahanController::class)->names('kelurahan');
     Route::resource('/penduduk', PendudukController::class)->names('penduduk');
+    Route::resource('/data-operator', StaffController::class)->names('data-operator');
   
 
 });

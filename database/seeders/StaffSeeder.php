@@ -26,9 +26,9 @@ class StaffSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'nama' => 'Ibu Fenny',
+                'nama' => 'pak ihsan',
                 'no_telepon' => '0898766788',
-                'email' => 'Fenny@gmail.com',
+                'email' => 'ihsan@gmail.com',
                 'password' => Hash::make('123456'),
                 'role' => 'Karyawan',
                 'profile' => 'file.jpg',

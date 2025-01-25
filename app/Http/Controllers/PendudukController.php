@@ -59,7 +59,7 @@ class PendudukController extends Controller
 
        $penduduk->update($request->all());
 
-       return redirect()->route('penduduks.index')->with('success', 'Data penduduk berhasil diperbarui!');
+       return redirect()->route('penduduk.index')->with('success', 'Data penduduk berhasil diperbarui!');
    }
 
    /**
