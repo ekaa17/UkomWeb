@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('penduduks', function (Blueprint $table) {
+        Schema::create('pegawais', function (Blueprint $table) {
             $table->id();
-            $table->string('nik', 16)->unique(); 
-            $table->string('nama');            
-            $table->text('alamat');        
-            $table->string('kelurahan');        
             $table->unsignedBigInteger('id_staff'); 
+            $table->string('nama');
+            $table->string('alamat');
+            $table->enum('jenis_kelamin', ['L', 'P']);
+            $table->string('jabatan');
             $table->timestamps();
 
             // Tambahkan foreign key ke tabel staff
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('penduduks');
+        Schema::dropIfExists('pegawais');
     }
 };

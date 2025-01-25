@@ -3,18 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
     public function dashboard()
     {
-      
+        // Your logic here, e.g., returning a view
         return view('pages.dashboard');
     }
-
-
     public function login(Request $request) {
         // dd($request);
         $request->validate([
@@ -29,7 +27,7 @@ class LoginController extends Controller
          if (Auth::attempt($request->only('email', 'password'))) {
             $user = Auth::user();
             
-            if ($user->role === 'Admin' || $user->role === 'Karyawan') {
+            if ($user->role === 'Super Admin' || $user->role === 'Admin' || $user->role === 'User') {
                 return redirect('/dashboard');
             } else {
                 return redirect('/')->with('wrong', 'Role tidak Ditemukan !');
@@ -43,7 +41,7 @@ class LoginController extends Controller
         if (Auth::check()) {
             $role = Auth::user()->role;
     
-           if ($role === 'Admin' || $role === 'Karyawan') {
+           if ($role === 'Super Admin' || $role === 'Admin' || $role === 'User') {
                 Auth::logout();
             }
         } 

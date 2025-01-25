@@ -10,8 +10,14 @@
         </ol>
         </nav>
     </div><!-- End Page Title -->
+        <style>
+          .carousel-item img {
+            height: 400px; /* Ganti dengan tinggi yang diinginkan */
+            object-fit: cover; /* Agar gambar tetap terlihat proporsional */
+          }
+        </style>
 
-    {{-- <section class="section dashboard">
+    <section class="section dashboard">
         <div class="row">
             <div class="col-lg-12">
                 <div class="row justify-content-center">
@@ -29,7 +35,7 @@
                 </div>
             </div>
         </div>
-        <div class="row"> --}}
+        <div class="row">
 {{--     
             <!-- GuruCard -->
             <div class="col-xxl-3 col-md-6">
@@ -115,6 +121,30 @@
 
             </div><!-- End Jurusan Card --> --}}
 
-          </div>
+
+
+
+
+           {{-- <div class="col-xxl-3 col-md-10 ">
+              <div class="card info-card sales-card">
+
+                <div class="card-body">
+                  <h5 class="card-title">Total Penduduk</h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                        <i class="bi bi-person-badge-fill"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6> </h6>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- End GuruCard -->
+          </div> --}}
     </section>
+
+    
 @endsection

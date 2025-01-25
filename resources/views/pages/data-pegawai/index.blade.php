@@ -2,11 +2,11 @@
 
 @section('content')
     <div class="pagetitle">
-        <h1>Data Mahasiswa</h1>
+        <h1>Data Pegawai</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item active">Data Mahasiswa</li>
+                <li class="breadcrumb-item active">Data Pegawai</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -33,7 +33,7 @@
                 <div class="card">
                     <div class="card-body pt-3">
                         <div class="d-flex align-items-center justify-content-between m-3">
-                            <h5 class="card-title">Total : {{$Mahasiswa}}  Mahasiswa</h5>
+                            <h5 class="card-title">Total :   Pegawai</h5>
                             <!-- Button untuk modal create -->
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
                                 <i class="fas fa-plus fa-sm text-white-50"></i> Data Baru
@@ -45,23 +45,23 @@
                                 <thead>
                                     <tr>
                                         <th>No.</th>
-                                        <th>email</th>
-                                        <th>Nama</th>
-                                        <th>Nim</th>
-                                        <th>Jurusan</th>
+                                        <th>Kode_Operator</th>
+                                        <th>Nama Lengkap</th>
                                         <th>Alamat</th>
+                                        <th>Jenis Kelamin</th>
+                                        <th>Jabatan</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($data as $index => $item)
+                                    @foreach($pegawai as $index => $item)
                                     <tr>
                                         <td>{{ $index + 1 }}</td>
-                                        <td>{{ $item->email }}</td>
+                                        <td>{{ $item->staff->name }}</td>
                                         <td>{{ $item->nama }}</td>
-                                        <td>{{ $item->nim }}</td>
-                                        <td>{{ $item->jurusan }}</td>
                                         <td>{{ $item->alamat }}</td>
+                                        <td>{{ $item->jenis_kelamin }}</td>
+                                        <td>{{ $item->jabatan }}</td>
                                         <td>
                                             <!-- Tombol Edit -->
                                             <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal-{{ $item->id }}">
@@ -82,14 +82,18 @@
                                                     <h5 class="modal-title" id="editModalLabel-{{ $item->id }}">Edit Data Jabatan</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
-                                                <form action="{{ route('data-mahasiswa.update', $item->id) }}" method="POST">
+                                                <form action="{{ route('data-pegawai.update', $item->id) }}" method="POST">
                                                     @csrf
                                                     @method('PUT')
-                                                    <div class="modal-body">
-                                                        <div class="mb-3">
-                                                            <label for="email" class="form-label">email</label>
-                                                            <input type="text" class="form-control" id="email" name="email" value="{{ $item->email }}" required>
-                                                        </div>
+                                                    <div class="mb-3">
+                                                        <label for="id_staff" class="form-label">Operator</label>
+                                                        <select class="form-select" id="id_staff" name="id_staff" required>
+                                                            @foreach ($staffs as $staff)
+                                                                <option value="{{ $staff->id }}" {{ $item->id_staff == $staff->id ? 'selected' : '' }}>
+                                                                    {{ $staff->name }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
                                                     </div>
 
                                                     <div class="modal-body">
@@ -98,18 +102,11 @@
                                                             <input type="text" class="form-control" id="nama" name="nama" value="{{ $item->nama }}" required>
                                                         </div>
                                                     </div>
-
+                                                    
                                                     <div class="modal-body">
                                                         <div class="mb-3">
-                                                            <label for="nim" class="form-label">Nim</label>
-                                                            <input type="text" class="form-control" id="nim" name="nim" value="{{ $item->nim }}" required>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="modal-body">
-                                                        <div class="mb-3">
-                                                            <label for="jurusan" class="form-label">Jurusan</label>
-                                                            <input type="text" class="form-control" id="jurusan" name="jurusan" value="{{ $item->jurusan }}" required>
+                                                            <label for="jenis_kelamin" class="form-label">jenis_kelamin</label>
+                                                            <input type="text" class="form-control" id="jenis_kelamin" name="jenis_kelamin" value="{{ $item->jenis_kelamin }}" required>
                                                         </div>
                                                     </div>
 
@@ -119,6 +116,15 @@
                                                             <input type="text" class="form-control" id="alamat" name="alamat" value="{{ $item->alamat }}" required>
                                                         </div>
                                                     </div>
+
+                                                    <div class="modal-body">
+                                                        <div class="mb-3">
+                                                            <label for="jabatan" class="form-label">jabatan</label>
+                                                            <input type="text" class="form-control" id="jabatan" name="jabatan" value="{{ $item->jabatan }}" required>
+                                                        </div>
+                                                    </div>
+
+                                    
 
                                                     <div class="modal-footer">
                                                         <button type="submit" class="btn btn-primary">Simpan</button>
@@ -142,7 +148,7 @@
                                                     Apakah Anda yakin ingin menghapus jabatan <strong>{{ $item->nama_jabatan }}</strong>?
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <form action="{{ route('data-mahasiswa.destroy', $item->id) }}" method="POST">
+                                                    <form action="{{ route('data-pegawai.destroy', $item->id) }}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger">Hapus</button>
@@ -171,32 +177,40 @@
                         <h5 class="modal-title" id="createModalLabel">Tambah Data Mahasiswa</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="{{ route('data-mahasiswa.store') }}" method="POST">
+                    <form action="{{ route('data-pegawai.store') }}" method="POST">
                         @csrf
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="text" class="form-control" id="email" name="email" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="nama" class="form-label">Nama</label>
-                                <input type="text" class="form-control" id="nama" name="nama" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="nim" class="form-label">Nim</label>
-                                <input type="text" class="form-control" id="nim" name="nim" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="jurusan" class="form-label">Jurusan</label>
-                                <select class="form-control" id="jurusan" name="jurusan" required>
-                                    <option value="" disabled selected>Pilih Jurusan</option>
-                                    <option value="Teknik Informatika">Teknik Informatika</option>
-                                    <option value="Sistem Informasi">Sistem Informasi</option>
+                                <label for="id_staff" class="form-label">Operator</label>
+                                <select class="form-select" id="id_staff" name="id_staff" required>
+                                    <option>Pilih Operator</option>
+                                    @foreach ($staffs as $staff)
+                                        <option value="{{ $staff->id }}">{{ $staff->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label for="alamat" class="form-label">Alamat</label>
+                                <label for="nama" class="form-label">nama</label>
+                                <input type="text" class="form-control" id="nama" name="nama" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="alamat" class="form-label">alamat</label>
                                 <input type="text" class="form-control" id="alamat" name="alamat" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
+                                <select class="form-select @error('jenis_kelamin') is-invalid @enderror" id="jenis_kelamin" name="jenis_kelamin" >
+                                    <option value="" disabled selected>Select Jenis Kelamin</option>
+                                    <option value="L" {{ old('jenis_kelamin') == 'L' ? 'selected' : '' }}>Laki-laki</option>
+                                    <option value="P" {{ old('jenis_kelamin') == 'P' ? 'selected' : '' }}>Perempuan</option>
+                                </select>
+                                @error('jenis_kelamin')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label for="jabatan" class="form-label">Jabatan</label>
+                                <input type="text" class="form-control" id="jabatan" name="jabatan" required>
                             </div>
                         </div>
                         <div class="modal-footer">

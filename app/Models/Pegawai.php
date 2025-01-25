@@ -5,19 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Penduduk extends Model
+class Pegawai extends Model
 {
     use HasFactory;
 
+    protected $table = 'pegawais';
 
     protected $fillable = [
-        'nik',
         'nama',
         'alamat',
-        'kelurahan',
+        'jenis_kelamin',
+        'jabatan',
         'id_staff',
-        'id_kecamatan',
-        'id_kelurahan',
     ];
 
     /**
@@ -26,15 +25,5 @@ class Penduduk extends Model
     public function staff()
     {
         return $this->belongsTo(Staff::class, 'id_staff', 'id');
-    }
-
-    public function kecamatan()
-    {
-        return $this->belongsTo(kecamatan::class, 'id_kecamatan', 'id');
-    }
-
-    public function kelurahan()
-    {
-        return $this->belongsTo(kelurahan::class, 'id_kelurahan', 'id');
     }
 }

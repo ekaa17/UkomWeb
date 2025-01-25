@@ -6,15 +6,19 @@ use App\Models\Staff;
 use App\Models\Penduduk;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Kecamatan;
+use App\Models\Kelurahan;
 
 class PendudukController extends Controller
 {
    
    public function index()
    {
-       $penduduks = Penduduk::with('staff')->get(); // Mengambil data penduduk beserta relasi staff
-       $staffs = Staff::all(); // Mengambil data staff untuk dropdown
-       return view('pages.penduduks.index', compact('penduduks', 'staffs'));
+       $penduduks = Penduduk::with('staff','kecamatan','kelurahan')->get(); 
+       $staffs = Staff::all(); 
+       $kecamatans = Kecamatan::all(); 
+       $kelurahans = Kelurahan::all(); 
+       return view('pages.penduduks.index', compact('penduduks', 'staffs','kecamatans','kelurahans'));
    }
 
    /**
@@ -22,17 +26,19 @@ class PendudukController extends Controller
     */
    public function store(Request $request)
    {
+    // dd($request);
        $request->validate([
            'nik' => 'required|string|size:16|unique:penduduks,nik',
            'nama' => 'required|string|max:255',
            'alamat' => 'required|string',
-           'kelurahan' => 'required|string|max:255',
            'id_staff' => 'required|exists:staff,id',
+           'id_kecamatan' => 'required|exists:kecamatans,id',
+           'id_kelurahan' => 'required|exists:kelurahans,id',
        ]);
 
        Penduduk::create($request->all());
 
-       return redirect()->route('penduduks.index')->with('success', 'Data penduduk berhasil ditambahkan!');
+       return redirect()->route('penduduk.index')->with('success', 'Data penduduk berhasil ditambahkan!');
    }
 
    /**
@@ -46,8 +52,9 @@ class PendudukController extends Controller
            'nik' => 'required|string|size:16|unique:penduduks,nik,' . $penduduk->id,
            'nama' => 'required|string|max:255',
            'alamat' => 'required|string',
-           'kelurahan' => 'required|string|max:255',
            'id_staff' => 'required|exists:staff,id',
+           'id_kecamatan' => 'required|exists:kecamatans,id',
+           'id_kelurahan' => 'required|exists:kelurahans,id',
        ]);
 
        $penduduk->update($request->all());

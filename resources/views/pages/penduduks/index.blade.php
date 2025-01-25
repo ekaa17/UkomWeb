@@ -42,7 +42,8 @@
                                         <th>Nama</th>
                                         <th>Alamat</th>
                                         <th>Kelurahan</th>
-                                        <th>Operator</th>
+                                        <th>Kecamatan</th>
+                                        <th>Nama Pencatat</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -53,8 +54,9 @@
                                             <td>{{ $penduduk->nik }}</td>
                                             <td>{{ $penduduk->nama }}</td>
                                             <td>{{ $penduduk->alamat }}</td>
-                                            <td>{{ $penduduk->kelurahan }}</td>
-                                            <td>{{ $penduduk->staff->name ?? 'Tidak Diketahui' }}</td>
+                                            <td>{{ $penduduk->kelurahan->nama_kelurahan }}</td>
+                                            <td>{{ $penduduk->kecamatan->nama_kecamatan }}</td>
+                                            <td>{{ $penduduk->staff->name}}</td>
                                             <td>
                                                 <!-- Tombol Edit -->
                                                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editPendudukModal{{ $penduduk->id }}">
@@ -76,7 +78,7 @@
                                                         <h5 class="modal-title" id="editPendudukModalLabel{{ $penduduk->id }}">Edit Data Penduduk</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
-                                                    <form action="{{ route('penduduks.update', $penduduk->id) }}" method="POST">
+                                                    <form action="{{ route('penduduk.update', $penduduk->id) }}" method="POST">
                                                         @csrf
                                                         @method('PUT')
                                                         <div class="modal-body">
@@ -93,8 +95,25 @@
                                                                 <textarea class="form-control" id="alamat" name="alamat" rows="3" required>{{ $penduduk->alamat }}</textarea>
                                                             </div>
                                                             <div class="mb-3">
-                                                                <label for="kelurahan" class="form-label">Kelurahan</label>
-                                                                <input type="text" class="form-control" id="kelurahan" name="kelurahan" value="{{ $penduduk->kelurahan }}" required>
+                                                                <label for="id_kelurahan" class="form-label">Kelurahan</label>
+                                                                <select class="form-select" id="id_kelurahan" name="id_kelurahan" required>
+                                                                    @foreach ($kelurahans as $kel)
+                                                                        <option value="{{ $kel->id }}" {{ $penduduk->id_kelurahan == $kel->id ? 'selected' : '' }}>
+                                                                            {{ $kel->nama_kelurahan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="mb-3">
+                                                                <label for="id_kecamatan" class="form-label">Kecamatan</label>
+                                                                <select class="form-select" id="id_kecamatan" name="id_kecamatan" required>
+                                                                    @foreach ($kecamatans as $kec)
+                                                                        <option value="{{ $kec->id }}" {{ $penduduk->id_kecamatan == $kec->id ? 'selected' : '' }}>
+                                                                            {{ $kec->nama_kecamatan }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
                                                             </div>
                                                             <div class="mb-3">
                                                                 <label for="id_staff" class="form-label">Operator</label>
@@ -129,7 +148,7 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                        <form action="{{ route('penduduks.destroy', $penduduk->id) }}" method="POST">
+                                                        <form action="{{ route('penduduk.destroy', $penduduk->id) }}" method="POST">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-danger">Hapus</button>
@@ -160,7 +179,7 @@
                     <h5 class="modal-title" id="createPendudukModalLabel">Tambah Data Penduduk</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('penduduks.store') }}" method="POST">
+                <form action="{{ route('penduduk.store') }}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <div class="mb-3">
@@ -175,16 +194,33 @@
                             <label for="alamat" class="form-label">Alamat</label>
                             <textarea class="form-control" id="alamat" name="alamat" rows="3" required></textarea>
                         </div>
-                        <div class="mb-3">
-                            <label for="kelurahan" class="form-label">Kelurahan</label>
-                            <input type="text" class="form-control" id="kelurahan" name="kelurahan" required>
-                        </div>
+                       
                         <div class="mb-3">
                             <label for="id_staff" class="form-label">Operator</label>
                             <select class="form-select" id="id_staff" name="id_staff" required>
                                 <option>Pilih Operator</option>
                                 @foreach ($staffs as $staff)
                                     <option value="{{ $staff->id }}">{{ $staff->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="id_kelurahan" class="form-label">Kelurahan</label>
+                            <select class="form-select" id="id_kelurahan" name="id_kelurahan" required>
+                                <option>Pilih Kelurahan</option>
+                                @foreach ($kelurahans as $kelurahan)
+                                    <option value="{{ $kelurahan->id }}">{{ $kelurahan->nama_kelurahan }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="id_kecamatan" class="form-label">Kecamatan</label>
+                            <select class="form-select" id="id_kecamatan" name="id_kecamatan" required>
+                                <option>Pilih Kecamatan</option>
+                                @foreach ($kecamatans as $kecamatan)
+                                    <option value="{{ $kecamatan->id }}">{{ $kecamatan->nama_kecamatan }}</option>
                                 @endforeach
                             </select>
                         </div>

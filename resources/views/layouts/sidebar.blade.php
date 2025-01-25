@@ -13,57 +13,36 @@
 
     <!-- Nav -->
     <li class="nav-item">
-      <a href="./data-mahasiswa " class="nav-link collapsed">
-        <i class="bi bi-people-fill"></i>
-        <span>Data Mahasiswa</span>
+      <a href="./data-pegawai " class="nav-link collapsed">
+        <i class="bi bi-person-circle"></i>
+        <span>Pegawai</span>
       </a>
     </li><!-- End Nav -->
 
-
-    <span>Penduduk</span>
-
-    <!-- Nav -->
     <li class="nav-item">
-      <a href="./data-operator " class="nav-link collapsed">
-        <i class="bi bi-person-fill"></i>
-        <span>Operator</span>
+      <a href="./kecamatan " class="nav-link collapsed">
+        <i class="bi bi-house-fill"></i>
+        <span>Kecamatan</span>
       </a>
     </li><!-- End Nav -->
 
-     <!-- Nav -->
-     <li class="nav-item">
-      <a href="./penduduks " class="nav-link collapsed">
-        <i class="bi bi-person-fill"></i>
+    <li class="nav-item">
+      <a href="./kelurahan " class="nav-link collapsed">
+        <i class="bi bi-house"></i>
+        <span>Kelurahan</span>
+      </a>
+    </li><!-- End Nav -->
+
+
+    <li class="nav-item">
+      <a href="./penduduk " class="nav-link collapsed">
+        <i class="bi bi-people-fill"></i>
         <span>Penduduk</span>
       </a>
     </li><!-- End Nav -->
 
-    <span>Laundry</span>
 
-     <!-- Nav -->
-     <li class="nav-item">
-      <a href="./pelanggan " class="nav-link collapsed">
-        <i class="bi bi-person-fill"></i>
-        <span>Pelanggan</span>
-      </a>
-    </li><!-- End Nav -->
-
-
-     <!-- Nav -->
-     <li class="nav-item">
-      <a href="./harga-laundry " class="nav-link collapsed">
-        <i class="bi bi-person-fill"></i>
-        <span>Jenis Layanan Laundry</span>
-      </a>
-    </li><!-- End Nav -->
-
-     <!-- Nav -->
-     <li class="nav-item">
-      <a href="./pembayaran_laundry " class="nav-link collapsed">
-        <i class="bi bi-person-fill"></i>
-        <span>Pembayaran Laundry</span>
-      </a>
-    </li><!-- End Nav -->
+ 
 
 
    
